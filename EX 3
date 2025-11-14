@@ -1,0 +1,186 @@
+–<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leave Management Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 420px;
+    }
+
+    .wrapper h2 {
+      text-align: center;
+      color: #2d3436;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: white;
+      padding: 0 6px;
+      color: #888;
+      transition: 0.2s ease;
+      pointer-events: none;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label,
+    .form-group select:focus + label {
+      top: -10px;
+      left: 10px;
+      font-size: 12px;
+      color: #2980b9;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #216a94;
+    }
+
+    .leave-info {
+      background: #ecf7ff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      color: #34495e;
+      font-size: 14px;
+    }
+
+    .leave-info strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <h2>Leave Request Form</h2>
+    <form id="leaveForm">
+
+      <div class="form-group">
+        <input type="text" id="name" name="name" required placeholder=" " />
+        <label for="name">Full Name</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="regNumber" name="regNumber" required placeholder=" " />
+        <label for="regNumber">Register Number</label>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" name="email" required placeholder=" " />
+        <label for="email">Email Address</label>
+      </div>
+
+      <div class="form-group">
+        <select id="leaveType" name="leaveType" required>
+          <option value="" disabled selected hidden>Select leave type</option>
+          <option value="Medical Leave">Medical Leave</option>
+          <option value="Casual Leave">Casual Leave</option>
+          <option value="Earned Leave">Earned Leave</option>
+        </select>
+        <label for="leaveType">Leave Type</label>
+      </div>
+
+      <div class="form-group">
+        <input type="date" id="fromDate" name="fromDate" required placeholder=" " />
+        <label for="fromDate">From Date</label>
+      </div>
+
+      <div class="form-group">
+        <input type="date" id="toDate" name="toDate" required placeholder=" " />
+        <label for="toDate">To Date</label>
+      </div>
+
+      <div class="form-group">
+        <textarea id="reason" name="reason" required placeholder=" "></textarea>
+        <label for="reason">Reason for Leave</label>
+      </div>
+
+      <button type="submit">Submit Leave Request</button>
+      <button type="button" id="viewHistoryBtn">📜 View Leave History</button>
+    </form>
+
+    <div class="leave-info">
+      <strong>Leave Stats</strong>
+      <p>Leaves Available: <b>18</b></p>
+      <p>Leaves Used: <b>2</b></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("leaveForm");
+    const viewBtn = document.getElementById("viewHistoryBtn");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("✅ Your leave application has been submitted.");
+      form.reset();
+    });
+
+    viewBtn.addEventListener("click", function () {
+      alert("📜 Leave History: \n• 01-Sep-2025 to 03-Sep-2025 — Medical Leave\n• 15-Aug-2025 — Casual Leave");
+    });
+  </script>
+
+</body>
+</html>
